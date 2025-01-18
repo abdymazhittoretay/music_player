@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:music_player/models/song_model.dart';
+import 'package:music_player/pages/song_page.dart';
 import 'package:music_player/providers/playlist_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -11,6 +12,15 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  late final PlaylistProvider playlistProvider;
+
+  @override
+  void initState() {
+    super.initState();
+
+    playlistProvider = Provider.of<PlaylistProvider>(context, listen: false);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,11 +42,27 @@ class _HomePageState extends State<HomePage> {
                 return ListTile(
                   title: Text(song.songName),
                   subtitle: Text(song.artistName),
-                  leading: Image.asset(song.imagePath),
+                  leading: Image.asset(
+                    song.imagePath,
+                    width: 50,
+                    height: 50,
+                  ),
+                  onTap: () => goToSong(index),
                 );
               });
         },
       ),
     );
+  }
+
+  // Functions
+  void goToSong(int? index) {
+    playlistProvider.changeSongIndex = index;
+
+    Navigator.push(context, MaterialPageRoute(
+      builder: (context) {
+        return SongPage();
+      },
+    ));
   }
 }
