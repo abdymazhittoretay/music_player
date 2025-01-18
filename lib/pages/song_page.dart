@@ -28,9 +28,9 @@ class _SongPageState extends State<SongPage> {
             centerTitle: true,
           ),
           body: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            padding:
+                const EdgeInsets.symmetric(horizontal: 20.0, vertical: 45.0),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
                     padding: EdgeInsets.all(15.0),
@@ -78,9 +78,7 @@ class _SongPageState extends State<SongPage> {
                         )
                       ],
                     )),
-                SizedBox(
-                  height: 15.0,
-                ),
+                Spacer(),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 15.0),
                   child: Row(
@@ -102,7 +100,35 @@ class _SongPageState extends State<SongPage> {
                     max: 100,
                     value: 30,
                     activeColor: Colors.black,
-                    onChanged: (value) {})
+                    onChanged: (value) {}),
+                SizedBox(
+                  height: 15.0,
+                ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: IconButton(
+                          onPressed: () {}, icon: Icon(Icons.skip_previous)),
+                    ),
+                    Expanded(
+                        flex: 2,
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: Colors.black,
+                              borderRadius: BorderRadius.circular(10.0)),
+                          child: IconButton(
+                              onPressed: () {},
+                              icon: Icon(
+                                Icons.play_arrow,
+                                color: Colors.white,
+                              )),
+                        )),
+                    Expanded(
+                        child: IconButton(
+                            onPressed: () {}, icon: Icon(Icons.skip_next))),
+                  ],
+                ),
+                Spacer(),
               ],
             ),
           ),
