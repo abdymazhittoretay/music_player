@@ -78,6 +78,22 @@ class _SongPageState extends State<SongPage> {
                         )
                       ],
                     )),
+                SizedBox(
+                  height: 15.0,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text("0:00"),
+                      Icon(Icons.shuffle),
+                      Icon(Icons.repeat),
+                      Text("0:00"),
+                    ],
+                  ),
+                )
               ],
             ),
           ),
