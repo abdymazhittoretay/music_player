@@ -93,7 +93,16 @@ class _SongPageState extends State<SongPage> {
                       Text("0:00"),
                     ],
                   ),
-                )
+                ),
+                SizedBox(
+                  height: 15.0,
+                ),
+                Slider(
+                    min: 0,
+                    max: 100,
+                    value: 30,
+                    activeColor: Colors.black,
+                    onChanged: (value) {})
               ],
             ),
           ),
