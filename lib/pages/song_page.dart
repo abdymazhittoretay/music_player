@@ -85,10 +85,12 @@ class _SongPageState extends State<SongPage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text("0:00"),
+                      Text(
+                          "${value.currentDuration.inMinutes}:${value.currentDuration.inSeconds.remainder(60).toString().padLeft(2, "0")}"),
                       Icon(Icons.shuffle),
                       Icon(Icons.repeat),
-                      Text("0:00"),
+                      Text(
+                          "${value.totalDuration.inMinutes}:${value.totalDuration.inSeconds.remainder(60).toString().padLeft(2, "0")}"),
                     ],
                   ),
                 ),
