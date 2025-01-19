@@ -96,11 +96,14 @@ class _SongPageState extends State<SongPage> {
                   height: 15.0,
                 ),
                 Slider(
-                    min: 0,
-                    max: 100,
-                    value: 30,
-                    activeColor: Colors.black,
-                    onChanged: (value) {}),
+                  min: 0,
+                  max: value.totalDuration.inSeconds.toDouble(),
+                  value: value.currentDuration.inSeconds.toDouble(),
+                  activeColor: Colors.black,
+                  onChanged: (double double) {
+                    value.seek(Duration(seconds: double.toInt()));
+                  },
+                ),
                 SizedBox(
                   height: 15.0,
                 ),
@@ -108,7 +111,11 @@ class _SongPageState extends State<SongPage> {
                   children: [
                     Expanded(
                       child: IconButton(
-                          onPressed: () {}, icon: Icon(Icons.skip_previous)),
+                          onPressed: () {
+                            value.previousSong();
+                            value.play();
+                          },
+                          icon: Icon(Icons.skip_previous)),
                     ),
                     Expanded(
                         flex: 2,
@@ -117,15 +124,21 @@ class _SongPageState extends State<SongPage> {
                               color: Colors.black,
                               borderRadius: BorderRadius.circular(10.0)),
                           child: IconButton(
-                              onPressed: () {},
+                              onPressed: value.pauseOrResume,
                               icon: Icon(
-                                Icons.play_arrow,
+                                value.isPlaying
+                                    ? Icons.pause
+                                    : Icons.play_arrow,
                                 color: Colors.white,
                               )),
                         )),
                     Expanded(
                         child: IconButton(
-                            onPressed: () {}, icon: Icon(Icons.skip_next))),
+                            onPressed: () {
+                              value.nextSong();
+                              value.play();
+                            },
+                            icon: Icon(Icons.skip_next))),
                   ],
                 ),
                 Spacer(),

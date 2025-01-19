@@ -33,17 +33,17 @@ class PlaylistProvider extends ChangeNotifier {
     final String pathToSong = _playlist[_selectedSong!].audioPath;
     await _audioPlayer.stop();
     await _audioPlayer.play(AssetSource(pathToSong));
-    _isPlaying = !_isPlaying;
+    _isPlaying = true;
     notifyListeners();
   }
 
   void pauseOrResume() async {
     if (_isPlaying) {
       await _audioPlayer.pause();
-      _isPlaying = !_isPlaying;
+      _isPlaying = false;
     } else {
       await _audioPlayer.resume();
-      _isPlaying = !_isPlaying;
+      _isPlaying = true;
     }
     notifyListeners();
   }
@@ -59,6 +59,7 @@ class PlaylistProvider extends ChangeNotifier {
       } else {
         _selectedSong = _selectedSong! + 1;
       }
+      notifyListeners();
     }
   }
 
@@ -73,6 +74,7 @@ class PlaylistProvider extends ChangeNotifier {
       } else {
         _selectedSong = _selectedSong! - 1;
       }
+      notifyListeners();
     }
   }
 
